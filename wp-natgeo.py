@@ -45,4 +45,5 @@ if pic_url is not None:
             with open(LOCATION + filename, 'wb') as file:
                 shutil.copyfileobj(response, file)
 
+    print(LOCATION + filename)
     wallpaper.win(LOCATION + filename)

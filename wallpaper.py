@@ -8,4 +8,4 @@ def win(path):
     # http://mail.python.org/pipermail/python-win32/2005-January/002893.html
     # http://code.activestate.com/recipes/435877-change-the-wallpaper-under-windows/
     cs = ctypes.c_wchar_p(path)
-    return ctypes.windll.user32.SystemParametersInfoA(0x0014, 0, cs, 0)
+    return ctypes.windll.user32.SystemParametersInfoW(0x0014, 0, cs, 0)
