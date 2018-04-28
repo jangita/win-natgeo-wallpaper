@@ -1,2 +1,9 @@
+altgraph==0.15
+future==0.16.0
+macholib==1.9
+pefile==2017.11.5
+PyInstaller==3.3.1
+pypiwin32==223
 python-slugify==1.2.5
+pywin32==223
 Unidecode==1.0.22

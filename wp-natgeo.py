@@ -1,10 +1,9 @@
+import ctypes
 import os
 import shutil
 import urllib.request
 
 from slugify import slugify
-
-import wallpaper
 
 
 def between(data, here, there):
@@ -45,5 +44,5 @@ if pic_url is not None:
             with open(LOCATION + filename, 'wb') as file:
                 shutil.copyfileobj(response, file)
 
-    print(LOCATION + filename)
-    wallpaper.win(LOCATION + filename)
+    cs = ctypes.c_wchar_p(LOCATION + filename)
+    ctypes.windll.user32.SystemParametersInfoW(0x0014, 0, cs, 0)
