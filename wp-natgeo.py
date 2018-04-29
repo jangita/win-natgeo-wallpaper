@@ -32,8 +32,8 @@ if pic_url is not None:
     title = between(html, '<meta property="og:title" content="', '"')
 
     # Get the title for the filename and to see if we have downloaded it before
-    filename = slugify(title) + '.jpg'
-    if not os.path.exists(LOCATION + filename):
+    filename = LOCATION + slugify(title) + '.jpg'
+    if not os.path.exists(filename):
 
         # Make directories if they are not there
         if not os.path.exists(LOCATION):
@@ -41,8 +41,8 @@ if pic_url is not None:
 
         # Download and save picture
         with urllib.request.urlopen(pic_url) as response:
-            with open(LOCATION + filename, 'wb') as file:
+            with open(filename, 'wb') as file:
                 shutil.copyfileobj(response, file)
 
-    cs = ctypes.c_wchar_p(LOCATION + filename)
-    ctypes.windll.user32.SystemParametersInfoW(0x0014, 0, cs, 0)
+    cs = ctypes.c_wchar_p(filename)
+    ret = ctypes.windll.user32.SystemParametersInfoW(0x0014, 0, cs, 0)
