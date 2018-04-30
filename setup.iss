@@ -22,37 +22,38 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\albisoft.mobi\NatGeo Wallpaper
 DisableDirPage=yes
 DisableProgramGroupPage=yes
-OutputDir=C:\code\win-natgeo-wallpaper\dist\innosetup
+OutputDir=dist\innosetup
 OutputBaseFilename=wp-natgeo-setup
 Compression=lzma
 SolidCompression=yes
+PrivilegesRequired=admin 
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\wp-natgeo.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\_bz2.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\_ctypes.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\_hashlib.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\_lzma.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\_socket.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\_ssl.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\base_library.zip"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\pyexpat.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\python36.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\select.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\unicodedata.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\VCRUNTIME140.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\code\win-natgeo-wallpaper\dist\wp-natgeo\wp-natgeo.exe.manifest"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\wp-natgeo.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\_bz2.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\_ctypes.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\_hashlib.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\_lzma.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\_socket.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\_ssl.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\base_library.zip"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\pyexpat.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\python36.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\select.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\unicodedata.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\VCRUNTIME140.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\wp-natgeo\wp-natgeo.exe.manifest"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
 Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 
 [Run]
-Filename: "schtasks.exe"; Parameters: "/Create /SC ONLOGON /TN wp-natgeo /TR ""'{app}\wp-natgeo.exe'"" /F"; Flags: runhidden
-Filename: "{app}\wp-natgeo.exe"
+Filename: "schtasks.exe"; Parameters: "/Create /SC ONLOGON /TN wp-natgeo /TR ""'{app}\wp-natgeo.exe'"" /F"; Flags: runhidden runascurrentuser 
+Filename: "{app}\wp-natgeo.exe"; Flags: runascurrentuser
 
 [UninstallRun]
-Filename: "schtasks.exe"; Parameters: "/Delete /TN wp-natgeo /F"; Flags: runhidden
+Filename: "schtasks.exe"; Parameters: "/Delete /TN wp-natgeo /F"; Flags: runhidden runascurrentuser 
